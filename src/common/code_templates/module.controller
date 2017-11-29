@@ -1,0 +1,20 @@
+
+module App.Modules.<ModuleName> {
+    
+    import BaseController = App.Base.BaseController;
+
+    class <ModuleName>Controller extends BaseController 
+    {
+        static $inject = [ '$scope', '$rootScope' ];
+
+        constructor(
+            $scope : ng.IScope,
+            $rootScope : ng.IRootScopeService
+        ){
+            super( $scope, $rootScope );
+        }
+    }
+
+    <moduleN>Module.controller( '<ModuleName>Controller', <ModuleName>Controller );
+
+}

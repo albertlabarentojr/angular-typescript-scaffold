@@ -1,0 +1,45 @@
+let <moduleN>Module : any;
+
+module App.Modules.<ModuleName> {
+    import Base = App.Base;
+    import IConstants = App.Interfaces.Constants;
+
+    const <ModuleName>Constants = (() => {
+        let cons : IConstants.ModuleConstants = {
+            templateUrl : App.Config.Variables.modulesTemplateUrl+'<module>/templates/'
+        }
+        return cons;
+    })();
+
+    function <ModuleName>Config($urlRouterProvider : ng.ui.IUrlRouterProvider, $stateProvider : ng.ui.IStateProvider, <ModuleName>Constants : IConstants.ModuleConstants) {
+
+        let templatePath = <ModuleName>Constants.templateUrl;
+
+        $stateProvider
+            .state('main.<module>', {
+                url: "",
+                views : {
+                    main : {
+                        templateUrl: `${templatePath}<module>.html`,
+                        controller : '<ModuleName>Controller',
+                        controllerAs : '<moduleN>Ctrl'
+                    }
+                },
+                data : {
+                    permissions : {
+                        only : 'guest',
+                        redirectTo : App.Config.Acl.redirects.member
+                    },
+                    pageTitle : 'Sign up'
+                }
+            });
+
+    }
+
+    <ModuleName>Config.$inject = [ '$urlRouterProvider', '$stateProvider', '<ModuleName>Constants' ];
+
+    <moduleN>Module = angular.module(`${App.Config.Ng.module.name}.<module>`, [])
+                    .constant('<ModuleName>Constants', <ModuleName>Constants)
+                    .config(<ModuleName>Config);
+
+}

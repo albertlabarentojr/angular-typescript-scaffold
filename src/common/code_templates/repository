@@ -1,0 +1,25 @@
+module App.Repositories.<ModuleName> {
+
+    import IRepository = App.Interfaces.Repository;
+    import IResponse = App.Interfaces.Response;
+    import BaseRepository = App.Base.BaseRepository;
+
+     export interface <ModuleName>Response extends IResponse.IApiResponseElement {
+         type : string;
+     }
+
+    export class <ModuleName>Repository extends BaseRepository {
+
+        static $inject : string[] = ['Restangular', '$q'];
+
+        recordName = '<resource_name>';
+
+        default_id = 'id';
+
+        constructor(Restangular : restangular.IService, $q : ng.IQService) {
+            super(Restangular, $q, '<resource_name>');
+        }
+    }
+
+    angularModule.service('<ModuleName>', <ModuleName>Repository);
+}

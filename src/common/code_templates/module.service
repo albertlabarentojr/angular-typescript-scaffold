@@ -1,0 +1,12 @@
+module App.Modules.<ModuleName> {
+    
+    export class <ModuleName>Service {
+
+        static $inject : string[] = [ ];
+        
+        constructor(){}
+
+    }
+
+    <moduleN>Module.service( '<ModuleName>Service', <ModuleName>Service );
+}
